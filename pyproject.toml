@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "lib-version"
+name = "lib-version-remla25-team12"
 version = "0.0.0"  # Hopefully gets overridden
 description = "Library to expose version metadata"
 authors = ["Ayush"]
