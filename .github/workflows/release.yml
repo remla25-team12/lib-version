@@ -1,0 +1,33 @@
+name: Release lib-version
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+" 
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry and plugins
+        run: |
+          pip install poetry
+          poetry self add poetry-dynamic-versioning
+
+      - name: Install dependencies
+        run: poetry install --no-root
+
+      - name: Build package
+        run: poetry build
+
+      - name: Publish to PyPI
+        run: poetry publish --username __token__ --password ${{ secrets.PYPI_API_TOKEN }}
