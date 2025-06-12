@@ -18,3 +18,5 @@ build/
 try_version.py
 
 venv/
+
+/version.txt
